@@ -18,7 +18,6 @@ player = {
 	},
 
 	move:function(){
-		console.log(player.y);
 		player.vx = 0;
 		player.vvy += 0.6;
 		if(keyA){
