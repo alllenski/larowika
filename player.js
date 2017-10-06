@@ -3,6 +3,7 @@ player = {
 	y:16,
 	vx:0,
 	vy:0,
+	vvy:0,
 	falling:false,
 	jumping:false,
 
@@ -17,10 +18,9 @@ player = {
 	},
 
 	move:function(){
-
-		player.vy = 0;
-		player.vy = 9.8;
-
+		console.log(player.y);
+		player.vx = 0;
+		player.vvy += 0.6;
 		if(keyA){
 			player.vx = -4;
 		} else if(keyD){
@@ -29,11 +29,20 @@ player = {
 			player.vx = 0;
 		}
 
+		if(keyW && !player.jumping && !player.falling){
+			player.vvy -= 10;
+			player.jumping = true;
+		}
+
+		player.x += player.vx;
+		player.y += player.vy;
+		player.vy = constrain(player.vvy, -16, 16);
+           
 		fx = snap(player.x, TILEWIDTH);
 		fy = snap(player.y, TILEHEIGHT);
 
 		nx = player.x % TILEWIDTH;
-		ny = player.y % TILEHEIGHT;
+		ny = player.y % TILEHEIGHT; 
 
 		centertile = cell(fx, fy);
 		righttile = cell(fx + 1, fy);
@@ -44,6 +53,7 @@ player = {
 			if ((downtile && !centertile) || (diagonaltile && !righttile && nx)) {
 				player.y = grid(fy, TILEHEIGHT);       
 				player.vy = 0;
+				player.vvy = 0;  
 				player.falling = false;
 				player.jumping = false;            
 				ny = 0; 
@@ -52,6 +62,7 @@ player = {
 			if ((centertile && !downtile ) || (righttile && !diagonaltile && nx)) {
 				player.y = grid(fy + 1, TILEHEIGHT);
 				player.vy = 0;
+				player.vvy = 0;
 				centertile = downtile;
 				righttile = diagonaltile;
 				ny = 0;
@@ -65,15 +76,12 @@ player = {
 			}
 		} else if (player.vx < 0) {
 			if ((centertile     && !righttile) || (downtile  && !diagonaltile && ny)) {
-				player.x = grid(fx + 1), TILEWIDTH;
+				player.x = grid(fx + 1, TILEWIDTH);
 				player.vx = 0;
 			}
 		}
 
-		player.x += player.vx;
-		player.y += player.vy;
+		player.falling = ! (downtile || (nx && diagonaltile));
 
-		player.x = constrain(player.x, 0, WIDTH - 12);
-		player.y = constrain(player.y, 0, HEIGHT - 16);
 	}	
 }

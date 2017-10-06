@@ -16,12 +16,13 @@ var keyG = false;
 
 function setup(){
 	createCanvas(WIDTH, HEIGHT);
+	frameRate(60);
 }
 
 function draw(){
-		noStroke();
-		drawMap();
-		player.update();
+	noStroke();
+	drawMap();
+	player.update();
 }
 
 
