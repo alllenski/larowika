@@ -43,10 +43,10 @@ player = {
 		nx = player.x % TILEWIDTH;
 		ny = player.y % TILEHEIGHT; 
 
-		centertile = cell(fx, fy);
-		righttile = cell(fx + 1, fy);
-		downtile = cell(fx, fy + 1);
-		diagonaltile = cell(fx + 1, fy + 1);
+		centertile = ccell(fx, fy);
+		righttile = ccell(fx + 1, fy);
+		downtile = ccell(fx, fy + 1);
+		diagonaltile = ccell(fx + 1, fy + 1);
 
 		if (player.vy > 0) {
 			if ((downtile && !centertile) || (diagonaltile && !righttile && nx)) {

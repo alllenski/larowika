@@ -1,8 +1,11 @@
 
-WIDTH = 600;
+WIDTH = 1200;
 HEIGHT = 480;
 
-XTILES = 50;
+VIEWWIDTH = 600;
+VIEWHEIGHT = 480;
+
+XTILES = 100;
 YTILES = 30;
 
 TILEWIDTH = 12;
@@ -14,15 +17,23 @@ var keyS = false;
 var keyD = false;
 var keyG = false;
 
+var offsetX = 0;
+var offsetY = 0;
+
 function setup(){
-	createCanvas(WIDTH, HEIGHT);
+	createCanvas(VIEWWIDTH, VIEWHEIGHT);
 	frameRate(60);
 }
 
 function draw(){
 	noStroke();
+	push();
+	translate(offsetX, offsetY);
+	rect(-offsetX, -offsetX, 600, 480);
 	drawMap();
 	player.update();
+	pop();
+	offsetX--;
 }
 
 
@@ -33,7 +44,7 @@ function drawMap(){
 			if(tile == 1){
 				fill(255, 0, 0);
 				rect(i * TILEWIDTH, j * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
-			} else if(tile == 0){
+			} else if(tile == 2){
 				fill(255);
 				rect(i * TILEWIDTH, j * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
 			}
@@ -51,6 +62,15 @@ function snap(a, w){
 
 function cell(x, y){
 	return tiles[x + (y * XTILES)]
+}
+
+function ccell(x, y){
+	tile = cell(x, y);
+	if(tile == 1){
+		return true;
+	} else {
+		return false;
+	}
 }
 
 function collide(x1, y1, w1, h1, x2, y2, w2, h2){
