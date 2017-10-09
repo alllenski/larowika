@@ -14,7 +14,7 @@ player = {
 
 	draw:function(){
 		fill(255, 0, 0);
-		rect(player.x, player.y, TILEWIDTH, TILEHEIGHT);
+		rect(VIEWWIDTH / 2, player.y, TILEWIDTH, TILEHEIGHT);
 	},
 
 	move:function(){

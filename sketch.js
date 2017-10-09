@@ -27,13 +27,13 @@ function setup(){
 
 function draw(){
 	noStroke();
+	offsetX = VIEWWIDTH / 2 - player.x;
 	push();
 	translate(offsetX, offsetY);
-	rect(-offsetX, -offsetX, 600, 480);
+	rect(-offsetX, -offsetY, 600, 480);
 	drawMap();
-	player.update();
 	pop();
-	offsetX--;
+	player.update();
 }
 
 
