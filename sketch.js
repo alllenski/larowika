@@ -33,6 +33,8 @@ function draw(){
 	rect(-offsetX, -offsetY, 600, 480);
 	drawMap();
 	pop();
+	fill(0);
+	text("FPS: " + frameRate(), 0, 10);
 	player.update();
 }
 
