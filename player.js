@@ -13,8 +13,12 @@ player = {
 	},
 
 	draw:function(){
-		fill(255, 0, 0);
-		rect(VIEWWIDTH / 2, player.y, TILEWIDTH, TILEHEIGHT);
+		if(player.spr){
+			image(player.spr, VIEWWIDTH / 2, player.y);
+		} else {
+			fill(255, 0, 0);
+			rect(VIEWWIDTH / 2, player.y, TILEWIDTH, TILEHEIGHT);	
+		}  
 	},
 
 	move:function(){
@@ -26,6 +30,7 @@ player = {
 			player.vx = 4;
 		} else {
 			player.vx = 0;
+			player.spr = stand;
 		}
 
 		if(keyW && !player.jumping && !player.falling){
