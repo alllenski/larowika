@@ -21,7 +21,7 @@ var offsetX = 0;
 var offsetY = 0;
 
 function preload(){
-	stand = loadImage("stand.png");
+	stand = loadImage("/Stand.png");
 	walk_0 = loadImage("walk_0.png");
 	walk_1 = loadImage("walk_1.png");
  	walk_2 = loadImage("walk_2.png");
