@@ -22,18 +22,18 @@ var offsetY = 0;
 
 function preload(){
 	stand = loadImage("https://sapatoshoes.github.io/larowika/Stand.png");
-	walk_0 = loadImage("walk_0.png");
-	walk_1 = loadImage("walk_1.png");
- 	walk_2 = loadImage("walk_2.png");
-	walk_3 = loadImage("walk_3.png");
-	walk_4 = loadImage("walk_4.png");
-	walk_5 = loadImage("walk_5.png");
-	walk_6 = loadImage("walk_6.png");
-	walk_7 = loadImage("walk_7.png");
-	walk_8 = loadImage("walk_8.png");
-	walk_9 = loadImage("walk_9.png");
-	walk_10 = loadImage("walk_10.png");
-	walk_11 = loadImage("walk_11.png");
+//	walk_0 = loadImage("walk_0.png");
+//	walk_1 = loadImage("walk_1.png");
+//	walk_2 = loadImage("walk_2.png");
+//	walk_3 = loadImage("walk_3.png");
+//	walk_4 = loadImage("walk_4.png");
+//	walk_5 = loadImage("walk_5.png");
+//	walk_6 = loadImage("walk_6.png");
+//	walk_7 = loadImage("walk_7.png");
+//	walk_8 = loadImage("walk_8.png");
+//	walk_9 = loadImage("walk_9.png");
+//	walk_10 = loadImage("walk_10.png");
+//	walk_11 = loadImage("walk_11.png");
 }
 
 function setup(){
