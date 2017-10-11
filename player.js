@@ -26,7 +26,6 @@ player = {
 			player.vx = 4;
 		} else {
 			player.vx = 0;
-			player.spr = stand;
 		}
 
 		if(keyW && !player.jumping && !player.falling){
