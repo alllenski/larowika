@@ -1,7 +1,7 @@
 player = {
 	x:576,
 	y:16,
-	vx:0,]
+	vx:0,
 	vy:0,
 	vvy:0,
 	falling:false,
