@@ -13,12 +13,8 @@ player = {
 	},
 
 	draw:function(){
-		if(player.spr){
-			image(player.spr, VIEWWIDTH / 2, player.y);
-		} else {
-			fill(255, 0, 0);
-			rect(VIEWWIDTH / 2, player.y, TILEWIDTH, TILEHEIGHT);	
-		}  
+		fill(255, 0, 0);
+		rect(VIEWWIDTH / 2, player.y, TILEWIDTH, TILEHEIGHT);	 
 	},
 
 	move:function(){
