@@ -1,15 +1,19 @@
 
-WIDTH = 1200;
+WIDTH = 1080;
 HEIGHT = 480;
 
 VIEWWIDTH = 600;
 VIEWHEIGHT = 480;
 
-XTILES = 100;
-YTILES = 30;
+XTILES = 30;
+YTILES = 10;
 
-TILEWIDTH = 12;
-TILEHEIGHT = 16;
+TILEWIDTH = 36;
+TILEHEIGHT = 48;
+
+LIGHTGREEN = [60, 140, 80];
+DARKGREEN = [40, 80, 50];
+DARKBLUE = [15, 40, 85];
 
 var keyW = false;
 var keyA = false;
@@ -21,24 +25,26 @@ var offsetX = 0;
 var offsetY = 0;
 
 function preload(){
-//	stand = loadImage("https://sapatoshoes.github.io/larowika/Stand.png");
-//	walk_0 = loadImage("walk_0.png");
-//	walk_1 = loadImage("walk_1.png");
-//	walk_2 = loadImage("walk_2.png");
-//	walk_3 = loadImage("walk_3.png");
-//	walk_4 = loadImage("walk_4.png");
-//	walk_5 = loadImage("walk_5.png");
-//	walk_6 = loadImage("walk_6.png");
-//	walk_7 = loadImage("walk_7.png");
-//	walk_8 = loadImage("walk_8.png");
-//	walk_9 = loadImage("walk_9.png");
-//	walk_10 = loadImage("walk_10.png");
-//	walk_11 = loadImage("walk_11.png");
+    stand = loadImage("https://sapatoshoes.github.io/larowika/Stand.png");
+    walk_0 = loadImage("walk_0.png");
+	walk_1 = loadImage("walk_1.png");
+	walk_2 = loadImage("walk_2.png");
+	walk_3 = loadImage("walk_3.png");
+	walk_4 = loadImage("walk_4.png");
+	walk_5 = loadImage("walk_5.png");
+	walk_6 = loadImage("walk_6.png");
+	walk_7 = loadImage("walk_7.png");
+	walk_8 = loadImage("walk_8.png");
+	walk_9 = loadImage("walk_9.png");
+	walk_10 = loadImage("walk_10.png");
+	walk_11 = loadImage("walk_11.png");
+	font = loadFont("pixelart.ttf");
 }
 
 function setup(){
 	createCanvas(VIEWWIDTH, VIEWHEIGHT);
 	frameRate(60);
+	textFont(font);
 }
 
 function draw(){
@@ -52,19 +58,27 @@ function draw(){
 	var fps = frameRate();
 	fill(0);
 	text("FPS: " + fps, 0, 10);
+	var say = 'Hello!';
+	textBox(say); 
 	player.update();
 }
 
+function textBox(say){
+	fill(DARKBLUE);
+	rect(10, 360, 580, 110);
+	fill(0);
+	text(say, 20, 380);
+}
 
 function drawMap(){
 	for(var i = 0; i < XTILES; i++){
 		for(var j = 0; j < YTILES; j++){
 			tile = cell(i, j);
-			if(tile == 1){
-				fill(255, 0, 0);
+			if(tile == 2){
+				fill(LIGHTGREEN);
 				rect(i * TILEWIDTH, j * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
-			} else if(tile == 2){
-				fill(255);
+			} else if(tile == 1){
+				fill(DARKGREEN);
 				rect(i * TILEWIDTH, j * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
 			}
 		}
@@ -85,7 +99,7 @@ function cell(x, y){
 
 function ccell(x, y){
 	tile = cell(x, y);
-	if(tile == 1){
+	if(tile == 2){
 		return true;
 	} else {
 		return false;
