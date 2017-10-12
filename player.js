@@ -91,6 +91,8 @@ player = {
 	},
 
 	animate:function(){
+		tickCount++;
+		console.log('hello');
 		if(player.vx == 0){
 			player.spr = stand;
 		} else if(player.vx > 0) {
