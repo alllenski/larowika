@@ -6,10 +6,12 @@ player = {
 	vvy:0,
 	falling:false,
 	jumping:false,
+	wSpr:[walk00, walk01, walk02, walk03, walk04, walk05, walk06, walk07, walk08, walk09, walk10, walk11];
 
 	update:function(){
 		player.draw();
 		player.move();
+		player.animate();
 	},
 
 	draw:function(){
@@ -30,7 +32,6 @@ player = {
 			player.vx = 4;
 		} else {
 			player.vx = 0;
-			player.spr = stand;
 		}
 
 		if(keyW && !player.jumping && !player.falling){
@@ -87,5 +88,18 @@ player = {
 
 		player.falling = ! (downtile || (nx && diagonaltile));
 
+	},
+
+	animate:function(){
+		if(player.vx == 0){
+			player.spr = stand;
+		} else if(player.vx > 0) {
+			i = 0;
+			if(tickCount > tpf){
+				i++;
+				tickCount = 0;
+			}
+			player.spr = player.wSpr[i];  
+		}
 	}	
 }

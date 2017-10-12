@@ -21,23 +21,26 @@ var keyS = false;
 var keyD = false;
 var keyG = false;
 
+var tickCount = 0;
+var tpf = 4;
+
 var offsetX = 0;
 var offsetY = 0;
 
 function preload(){
     stand = loadImage("stand.png");
-    walk_0 = loadImage("walk_00.png");
-	walk_1 = loadImage("walk_01.png");
-	walk_2 = loadImage("walk_02.png");
-	walk_3 = loadImage("walk_03.png");
-	walk_4 = loadImage("walk_04.png");
-	walk_5 = loadImage("walk_05.png");
-	walk_6 = loadImage("walk_06.png");
-	walk_7 = loadImage("walk_07.png");
-	walk_8 = loadImage("walk_08.png");
-	walk_9 = loadImage("walk_09.png");
-	walk_10 = loadImage("walk_10.png");
-	walk_11 = loadImage("walk_11.png");
+    walk00 = loadImage("walk00.png");
+	walk01 = loadImage("walk01.png");
+	walk02 = loadImage("walk02.png");
+	walk03 = loadImage("walk03.png");
+	walk04 = loadImage("walk04.png");
+	walk05 = loadImage("walk05.png");
+	walk06 = loadImage("walk06.png");
+	walk07 = loadImage("walk07.png");
+	walk08 = loadImage("walk08.png");
+	walk09 = loadImage("walk09.png");
+	walk10 = loadImage("walk10.png");
+	walk11 = loadImage("walk11.png");
 	font = loadFont("pixelart.ttf");
 }
 
