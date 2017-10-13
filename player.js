@@ -6,11 +6,17 @@ player = {
 	vvy:0,
 	falling:false,
 	jumping:false,
-	wSpr:[walk00, walk01, walk02, walk03, walk04, walk05, walk06, walk07, walk08, walk09, walk10, walk11];
+	interacting:false,
+	scene:0,
+	choose:0,
+	color:[0, 0, 0],
 
 	update:function(){
 		player.draw();
 		player.move();
+		if(player.interacting){
+			player.interact(player.scene);
+		}
 		player.animate();
 	},
 
@@ -18,31 +24,46 @@ player = {
 		if(player.spr){
 			image(player.spr, VIEWWIDTH / 2, player.y);
 		} else {
-			fill(255, 0, 0);
+			fill(player.color);
 			rect(VIEWWIDTH / 2, player.y, TILEWIDTH, TILEHEIGHT);	 
+		}
+	},
+
+	control:function(){
+		if(!player.interacting){
+			if(keyA){
+				player.vx = -4;
+			} else if(keyD){
+				player.vx = 4;
+			} else {
+				player.vx = 0;
+			}
+
+			if(keyW && !player.jumping && !player.falling){
+				player.vvy -= 10;
+				player.jumping = true;
+			}
+
+			if(keyG && !player.jumping && !player.falling){
+				if(collide(player.x, player.y, TILEWIDTH, TILEHEIGHT, eventX, eventY, TILEHEIGHT, TILEWIDTH)){
+					player.scene = texts.intro[0];
+					player.interacting = true;
+					keyG = false;
+				}
+			}
 		}
 	},
 
 	move:function(){
 		player.vx = 0;
 		player.vvy += 0.6;
-		if(keyA){
-			player.vx = -4;
-		} else if(keyD){
-			player.vx = 4;
-		} else {
-			player.vx = 0;
-		}
 
-		if(keyW && !player.jumping && !player.falling){
-			player.vvy -= 10;
-			player.jumping = true;
-		}
+		player.control();
 
 		player.x += player.vx;
 		player.y += player.vy;
 		player.vy = constrain(player.vvy, -16, 16);
-           
+
 		fx = snap(player.x, TILEWIDTH);
 		fy = snap(player.y, TILEHEIGHT);
 
@@ -92,16 +113,50 @@ player = {
 
 	animate:function(){
 		tickCount++;
-		console.log('hello');
-		if(player.vx == 0){
-			player.spr = stand;
-		} else if(player.vx > 0) {
-			i = 0;
-			if(tickCount > tpf){
-				i++;
-				tickCount = 0;
+		if(tickCount > tpf){
+			current++;
+			tickCount = 0;
+			if(current > 12){
+				current = 0;
 			}
-			player.spr = player.wSpr[i];  
+		}
+		c = current * 20;
+		player.color = [c, c, c];
+	},
+
+	interact:function(scene){
+		var j;
+		fill(DARKBLUE);
+		rect(10, 360, 580, 110);
+		fill(0);
+		text(scene.text, 20, 380);
+		for(var i = 0; i < scene.choices.length; i++){
+			var x = i * 15;
+			if(player.choose == i){
+				fill(255);
+			} else {
+				fill(0);
+			}
+			text(scene.choices[i], 20, 430 + x);
+		}
+		if(keyW){
+			player.choose -= 1;
+			keyW = false;
+		} else if(keyS){
+			player.choose += 1;
+			keyS = false;
+		}
+		player.choose = constrain(player.choose, 0, scene.choices.length - 1);
+		if(keyG){
+			if(scene.events[player.choose] == "end"){
+				player.interacting = false;
+			} else if(scene.events[player.choose] == "to"){
+				if(!j){
+					j = 0;
+				}
+				player.scene = texts.intro[j + 1];
+			}
+			keyG = false;
 		}
 	}	
 }

@@ -23,31 +23,36 @@ var keyG = false;
 
 var tickCount = 0;
 var tpf = 4;
+var current = 0;
+
+var sceneCount = 0;
 
 var offsetX = 0;
 var offsetY = 0;
 
 function preload(){
-    stand = loadImage("stand.png");
-    walk00 = loadImage("walk00.png");
-	walk01 = loadImage("walk01.png");
-	walk02 = loadImage("walk02.png");
-	walk03 = loadImage("walk03.png");
-	walk04 = loadImage("walk04.png");
-	walk05 = loadImage("walk05.png");
-	walk06 = loadImage("walk06.png");
-	walk07 = loadImage("walk07.png");
-	walk08 = loadImage("walk08.png");
-	walk09 = loadImage("walk09.png");
-	walk10 = loadImage("walk10.png");
-	walk11 = loadImage("walk11.png");
-	font = loadFont("pixelart.ttf");
+//  stand = loadImage("stand.png");
+//  walk00 = loadImage("walk00.png");
+//	walk01 = loadImage("walk01.png");
+//	walk02 = loadImage("walk02.png");
+//	walk03 = loadImage("walk03.png");
+//	walk04 = loadImage("walk04.png");
+//	walk05 = loadImage("walk05.png");
+//	walk06 = loadImage("walk06.png");
+//	walk07 = loadImage("walk07.png");
+//	walk08 = loadImage("walk08.png");
+//	walk09 = loadImage("walk09.png");
+//	walk10 = loadImage("walk10.png");
+//	walk11 = loadImage("walk11.png");
+//	font = loadFont("pixelart.ttf");
 }
 
 function setup(){
 	createCanvas(VIEWWIDTH, VIEWHEIGHT);
 	frameRate(60);
-	textFont(font);
+	eventX = 396;
+	eventY = 288;
+//	textFont(font);
 }
 
 function draw(){
@@ -57,20 +62,15 @@ function draw(){
 	translate(offsetX, offsetY);
 	rect(-offsetX, -offsetY, 600, 480);
 	drawMap();
+	fill(0, 0, 255);
+	rect(eventX, eventY, TILEWIDTH, TILEHEIGHT);
 	pop();
 	var fps = frameRate();
 	fill(0);
 	text("FPS: " + fps, 0, 10);
-	var say = 'Hello!';
-	textBox(say); 
+	text("x: " + player.x, 0, 25);
+	text("y: " + player.y, 0, 40);
 	player.update();
-}
-
-function textBox(say){
-	fill(DARKBLUE);
-	rect(10, 360, 580, 110);
-	fill(0);
-	text(say, 20, 380);
 }
 
 function drawMap(){
@@ -132,6 +132,9 @@ function keyPressed(){
 		case 68:
 		keyD = true;
 		break;
+		case 71:
+		keyG = true;
+		break;
 	}
 }
 
@@ -149,6 +152,9 @@ function keyReleased(){
 		break;
 		case 68:
 		keyD = false;
+		break;
+		case 71:
+		keyG = false;
 		break;
 	}
 }
