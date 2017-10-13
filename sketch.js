@@ -52,7 +52,7 @@ function setup(){
 	frameRate(60);
 	eventX = 396;
 	eventY = 288;
-//	textFont(font);
+	textFont(font);
 }
 
 function draw(){
