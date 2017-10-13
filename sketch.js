@@ -52,6 +52,7 @@ function setup(){
 	frameRate(60);
 	eventX = 396;
 	eventY = 288;
+	wSpr = [walk00, walk01, walk02, walk03, walk04, walk05, walk06, walk07, walk08, walk09, walk10, walk11]
 	textFont(font);
 }
 
