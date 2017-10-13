@@ -31,20 +31,20 @@ var offsetX = 0;
 var offsetY = 0;
 
 function preload(){
-//  stand = loadImage("stand.png");
-//  walk00 = loadImage("walk00.png");
-//	walk01 = loadImage("walk01.png");
-//	walk02 = loadImage("walk02.png");
-//	walk03 = loadImage("walk03.png");
-//	walk04 = loadImage("walk04.png");
-//	walk05 = loadImage("walk05.png");
-//	walk06 = loadImage("walk06.png");
-//	walk07 = loadImage("walk07.png");
-//	walk08 = loadImage("walk08.png");
-//	walk09 = loadImage("walk09.png");
-//	walk10 = loadImage("walk10.png");
-//	walk11 = loadImage("walk11.png");
-    font = loadFont("pixelart.ttf");
+	stand = loadImage("stand.png");
+	walk00 = loadImage("walk00.png");
+	walk01 = loadImage("walk01.png");
+	walk02 = loadImage("walk02.png");
+	walk03 = loadImage("walk03.png");
+	walk04 = loadImage("walk04.png");
+	walk05 = loadImage("walk05.png");
+	walk06 = loadImage("walk06.png");
+	walk07 = loadImage("walk07.png");
+	walk08 = loadImage("walk08.png");
+	walk09 = loadImage("walk09.png");
+	walk10 = loadImage("walk10.png");
+	walk11 = loadImage("walk11.png");
+	font = loadFont("pixelart.ttf");
 }
 
 function setup(){
