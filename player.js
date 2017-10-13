@@ -129,10 +129,12 @@ player = {
 					current = 0;
 				}
 			}
+			player.spr = wSpr[current];
 		} else {
 			player.spr = stand;	
 		}
-		player.spr = wSpr[current];
+		console.log(wSpr[current]);
+		console.log(current);
 	},
 
 	interact:function(scene){
