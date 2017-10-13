@@ -44,7 +44,7 @@ function preload(){
 //	walk09 = loadImage("walk09.png");
 //	walk10 = loadImage("walk10.png");
 //	walk11 = loadImage("walk11.png");
-//	font = loadFont("pixelart.ttf");
+    font = loadFont("pixelart.ttf");
 }
 
 function setup(){
