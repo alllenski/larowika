@@ -113,11 +113,21 @@ player = {
 
 	animate:function(){
 		tickCount++;
-		if(tickCount > tpf){
-			current++;
-			tickCount = 0;
-			if(current > 12){
-				current = 0;
+		if(player.vx > 0){
+			if(tickCount > tpf){
+				current++;
+				tickCount = 0;
+				if(current > 12){
+					current = 0;
+				}
+			}
+		} else if(player.vx < 0){
+			if(tickCount > tpf){
+				current++;
+				tickCount = 0;
+				if(current > 12){
+					current = 0;
+				}
 			}
 		}
 		c = current * 20;
