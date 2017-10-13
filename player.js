@@ -129,9 +129,10 @@ player = {
 					current = 0;
 				}
 			}
+		} else {
+			player.spr = stand;	
 		}
-		c = current * 20;
-		player.color = [c, c, c];
+		player.spr = wSpr[current];
 	},
 
 	interact:function(scene){
