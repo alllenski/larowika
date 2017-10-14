@@ -117,21 +117,25 @@ player = {
 			if(tickCount > tpf){
 				current++;
 				tickCount = 0;
-				if(current > 12){
+				if(current > 11){
 					current = 0;
 				}
 			}
+			player.flip = true;
+			player.spr = wSpr[current];
 		} else if(keyD){
 			if(tickCount > tpf){
 				current++;
 				tickCount = 0;
-				if(current > 12){
+				if(current > 11){
 					current = 0;
 				}
 			}
+			player.flip = false;
 			player.spr = wSpr[current];
 		} else {
-			player.spr = stand;	
+			player.spr = stand;
+			current = 0;	
 		}
 	},
 
