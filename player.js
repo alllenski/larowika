@@ -113,7 +113,7 @@ player = {
 
 	animate:function(){
 		tickCount++;
-		if(player.vx > 0){
+		if(keyA){
 			if(tickCount > tpf){
 				current++;
 				tickCount = 0;
@@ -121,7 +121,7 @@ player = {
 					current = 0;
 				}
 			}
-		} else if(player.vx < 0){
+		} else if(keyD){
 			if(tickCount > tpf){
 				current++;
 				tickCount = 0;
@@ -133,8 +133,6 @@ player = {
 		} else {
 			player.spr = stand;	
 		}
-		console.log(wSpr[current]);
-		console.log(current);
 	},
 
 	interact:function(scene){
