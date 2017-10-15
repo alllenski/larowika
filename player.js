@@ -25,8 +25,8 @@ player = {
 		if(player.spr){
 			if(player.flip){
 				push();
-				scale(-1, 1);
-				image(player.spr, VIEWWIDTH / 2, player.y);
+				scale(-1.0, 1.0);
+				image(player.spr, -VIEWWIDTH / 2 - TILEWIDTH, player.y);
 				pop();
 			} else {
 				image(player.spr, VIEWWIDTH / 2, player.y);
@@ -121,7 +121,14 @@ player = {
 
 	animate:function(){
 		tickCount++;
-		if(keyA){
+		if(player.jumping || player.falling){
+			if(keyA){
+				player.flip = true;
+			} else if(keyD) {
+				player.flip = false;
+			}
+			player.spr = jump;
+		} else if(keyA){
 			if(tickCount > tpf){
 				current++;
 				tickCount = 0;

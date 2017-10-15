@@ -22,7 +22,7 @@ var keyD = false;
 var keyG = false;
 
 var tickCount = 0;
-var tpf = 4;
+var tpf = 3;
 var current = 0;
 
 var sceneCount = 0;
@@ -31,20 +31,24 @@ var offsetX = 0;
 var offsetY = 0;
 
 function preload(){
-	stand = loadImage("stand.png");
-	walk00 = loadImage("walk00.png");
-	walk01 = loadImage("walk01.png");
-	walk02 = loadImage("walk02.png");
-	walk03 = loadImage("walk03.png");
-	walk04 = loadImage("walk04.png");
-	walk05 = loadImage("walk05.png");
-	walk06 = loadImage("walk06.png");
-	walk07 = loadImage("walk07.png");
-	walk08 = loadImage("walk08.png");
-	walk09 = loadImage("walk09.png");
-	walk10 = loadImage("walk10.png");
-	walk11 = loadImage("walk11.png");
-	font = loadFont("pixelart.ttf");
+	stand = loadImage("assets/stand.png");
+	jump = loadImage("assets/jump.png");
+	walk00 = loadImage("assets/walk00.png");
+	walk01 = loadImage("assets/walk01.png");
+	walk02 = loadImage("assets/walk02.png");
+	walk03 = loadImage("assets/walk03.png");
+	walk04 = loadImage("assets/walk04.png");
+	walk05 = loadImage("assets/walk05.png");
+	walk06 = loadImage("assets/walk06.png");
+	walk07 = loadImage("assets/walk07.png");
+	walk08 = loadImage("assets/walk08.png");
+	walk09 = loadImage("assets/walk09.png");
+	walk10 = loadImage("assets/walk10.png");
+	walk11 = loadImage("assets/walk11.png");
+	earth = loadImage("assets/earth.png");
+	sky = loadImage("assets/sky.png");
+	grass = loadImage("assets/grass.png");
+	font = loadFont("font/pixelart.ttf");
 }
 
 function setup(){
@@ -78,12 +82,14 @@ function drawMap(){
 	for(var i = 0; i < XTILES; i++){
 		for(var j = 0; j < YTILES; j++){
 			tile = cell(i, j);
-			if(tile == 2){
-				fill(LIGHTGREEN);
-				rect(i * TILEWIDTH, j * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
-			} else if(tile == 1){
-				fill(DARKGREEN);
-				rect(i * TILEWIDTH, j * TILEHEIGHT, TILEWIDTH, TILEHEIGHT);
+			var x = i * TILEWIDTH;
+			var y = j * TILEHEIGHT;
+			if(tile == 4){
+				image(grass, x, y);
+			} else if(tile == 5){
+				image(earth, x, y);
+			} else if(tile == 6){
+				image(sky, x, y);
 			}
 		}
 	}
@@ -103,7 +109,7 @@ function cell(x, y){
 
 function ccell(x, y){
 	tile = cell(x, y);
-	if(tile == 2){
+	if(tile == 4 || tile == 5){
 		return true;
 	} else {
 		return false;
