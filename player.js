@@ -9,6 +9,7 @@ player = {
 	interacting:false,
 	scene:0,
 	choose:0,
+	flip:false;
 	color:[0, 0, 0],
 
 	update:function(){
@@ -22,7 +23,14 @@ player = {
 
 	draw:function(){
 		if(player.spr){
-			image(player.spr, VIEWWIDTH / 2, player.y);
+			if(player.flip){
+				push();
+				scale(-1, 1);
+				image(player.spr, VIEWWIDTH / 2, player.y);
+				pop();
+			} else {
+				image(player.spr, VIEWWIDTH / 2, player.y);
+			}
 		} else {
 			fill(player.color);
 			rect(VIEWWIDTH / 2, player.y, TILEWIDTH, TILEHEIGHT);	 
