@@ -9,7 +9,7 @@ player = {
 	interacting:false,
 	scene:0,
 	choose:0,
-	flip:false;
+	flip:false,
 	color:[0, 0, 0],
 
 	update:function(){
