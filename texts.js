@@ -1,6 +1,8 @@
 
-texts = {
+levels = {
     intro:[{
+            X:180,
+            y:384,
             text:'Hello!',
             choices:[
                 "Ok...",

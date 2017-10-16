@@ -11,10 +11,6 @@ YTILES = 10;
 TILEWIDTH = 36;
 TILEHEIGHT = 48;
 
-LIGHTGREEN = [60, 140, 80];
-DARKGREEN = [40, 80, 50];
-DARKBLUE = [15, 40, 85];
-
 var keyW = false;
 var keyA = false;
 var keyS = false;
@@ -33,31 +29,49 @@ var offsetY = 0;
 function preload(){
 	stand = loadImage("assets/stand.png");
 	jump = loadImage("assets/jump.png");
-	walk00 = loadImage("assets/walk00.png");
-	walk01 = loadImage("assets/walk01.png");
-	walk02 = loadImage("assets/walk02.png");
-	walk03 = loadImage("assets/walk03.png");
-	walk04 = loadImage("assets/walk04.png");
-	walk05 = loadImage("assets/walk05.png");
-	walk06 = loadImage("assets/walk06.png");
-	walk07 = loadImage("assets/walk07.png");
-	walk08 = loadImage("assets/walk08.png");
-	walk09 = loadImage("assets/walk09.png");
+	walk1 = loadImage("assets/walk1.png");
+	walk2 = loadImage("assets/walk2.png");
+	walk3 = loadImage("assets/walk3.png");
+	walk4 = loadImage("assets/walk4.png");
+	walk5 = loadImage("assets/walk5.png");
+	walk6 = loadImage("assets/walk6.png");
+	walk7 = loadImage("assets/walk7.png");
+	walk8 = loadImage("assets/walk8.png");
+	walk9 = loadImage("assets/walk9.png");
 	walk10 = loadImage("assets/walk10.png");
 	walk11 = loadImage("assets/walk11.png");
-	earth = loadImage("assets/earth.png");
+	walk12 = loadImage("assets/walk12.png");
+	ascroll = loadImage("assets/ascroll.png");
+	dscroll = loadImage("assets/dscroll.png");
+	wscroll = loadImage("assets/wscroll.png");
+	gscroll = loadImage("assets/gscroll.png");
+	woodtopleft = loadImage("assets/woodtopleft.png");
+	woodtop = loadImage("assets/woodtop.png");
+	woodtopright = loadImage("assets/woodtopright.png");
+	woodmiddleleft = loadImage("assets/woodmiddleleft.png");
+	woodmiddle = loadImage("assets/woodmiddle.png");
+	woodmiddleright = loadImage("assets/woodmiddleright.png");
+	woodbottomleft = loadImage("assets/woodbottomleft.png");
+	woodbottom = loadImage("assets/woodbottom.png");
+	woodbottomright = loadImage("assets/woodbottomright.png");
+	woodtopleftcorner = loadImage("assets/woodtopleftcorner.png");
+	woodtoprightcorner = loadImage("assets/woodtoprightcorner.png");
+	woodbottomleftcorner = loadImage("assets/woodbottomleftcorner.png");
+	woodbottomrightcorner = loadImage("assets/woodbottomrightcorner.png");
+	woodbg = loadImage("assets/woodbg.png");
 	sky = loadImage("assets/sky.png");
-	grass = loadImage("assets/grass.png");
+	scroll = loadImage("assets/scroll.png");
 	font = loadFont("font/pixelart.ttf");
 }
 
 function setup(){
 	createCanvas(VIEWWIDTH, VIEWHEIGHT);
 	frameRate(60);
-	eventX = 396;
-	eventY = 288;
-	wSpr = [walk00, walk01, walk02, walk03, walk04, walk05, walk06, walk07, walk08, walk09, walk10, walk11]
+	wSpr = [walk1, walk2, walk3, walk4, walk5, walk6, walk7, walk8, walk9, walk10, walk11, walk12];
 	textFont(font);
+	eventX = 180;
+	eventY = 384;
+	loadLevel(tutorialmap);
 }
 
 function draw(){
@@ -67,6 +81,9 @@ function draw(){
 	translate(offsetX, offsetY);
 	rect(-offsetX, -offsetY, 600, 480);
 	drawMap();
+	image(ascroll, 72, 144);
+	image(dscroll, 216, 144);
+	image(wscroll, 432, 144);
 	fill(0, 0, 255);
 	rect(eventX, eventY, TILEWIDTH, TILEHEIGHT);
 	pop();
@@ -78,18 +95,59 @@ function draw(){
 	player.update();
 }
 
+function loadLevel(map){
+	tiles = map;
+}
+
 function drawMap(){
 	for(var i = 0; i < XTILES; i++){
 		for(var j = 0; j < YTILES; j++){
 			tile = cell(i, j);
 			var x = i * TILEWIDTH;
 			var y = j * TILEHEIGHT;
-			if(tile == 4){
-				image(grass, x, y);
-			} else if(tile == 5){
-				image(earth, x, y);
-			} else if(tile == 6){
-				image(sky, x, y);
+			switch(tile){
+				case tileid.woodtopleft:
+				image(woodtopleft, x, y);
+				break;
+				case tileid.woodtop:
+				image(woodtop, x, y);
+				break;
+				case tileid.woodtopright:
+				image(woodtopright, x, y);
+				break;
+				case tileid.woodtopleftcorner:
+				image(woodtopleftcorner, x, y);
+				break;
+				case tileid.woodtoprightcorner:
+				image(woodtoprightcorner, x, y);
+				break;
+				case tileid.woodmiddleleft:
+				image(woodmiddleleft, x, y);
+				break;
+				case tileid.woodmiddle:
+				image(woodmiddle, x, y);
+				break;
+				case tileid.woodmiddleright:
+				image(woodmiddleright, x, y);
+				break;
+				case tileid.woodbottomleftcorner:
+				image(woodbottomleftcorner, x, y);
+				break;
+				case tileid.woodbottomrightcorner:
+				image(woodbottomrightcorner, x, y);
+				break;
+				case tileid.woodbottomleft:
+				image(woodbottomleft, x, y);
+				break;
+				case tileid.woodbottom:
+				image(woodbottom, x, y);
+				break;
+				case tileid.woodbottomright:
+				image(woodbottomright, x, y);
+				break;
+				case tileid.woodbg:
+				image(woodbg, x, y);
+				break;
 			}
 		}
 	}
@@ -109,10 +167,10 @@ function cell(x, y){
 
 function ccell(x, y){
 	tile = cell(x, y);
-	if(tile == 4 || tile == 5){
-		return true;
-	} else {
+	if(tile == tileid.woodbg){
 		return false;
+	} else {
+		return true;
 	}
 }
 

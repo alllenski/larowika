@@ -1,6 +1,6 @@
 player = {
-	x:576,
-	y:16,
+	x:36,
+	y:364,
 	vx:0,
 	vy:0,
 	vvy:0,
@@ -48,15 +48,18 @@ player = {
 			}
 
 			if(keyW && !player.jumping && !player.falling){
-				player.vvy -= 10;
+				player.vvy -= 12;
 				player.jumping = true;
 			}
 
 			if(keyG && !player.jumping && !player.falling){
-				if(collide(player.x, player.y, TILEWIDTH, TILEHEIGHT, eventX, eventY, TILEHEIGHT, TILEWIDTH)){
-					player.scene = texts.intro[0];
-					player.interacting = true;
-					keyG = false;
+				console.log(events[0].length);
+				for(var i = 0; i < events.length; i++){
+					if(collide(player.x, player.y, TILEWIDTH, TILEHEIGHT, events[i].x, events[i].y, TILEHEIGHT, TILEWIDTH)){
+						player.scene = levels.intro[i];
+						player.interacting = true;
+						keyG = false;
+					}
 				}
 			}
 		}
@@ -156,10 +159,11 @@ player = {
 
 	interact:function(scene){
 		var j;
-		fill(DARKBLUE);
-		rect(10, 360, 580, 110);
+		image(scroll, 10, 375);
+		push();
+		translate(30, 400);
 		fill(0);
-		text(scene.text, 20, 380);
+		text(scene.text, 0, 0);
 		for(var i = 0; i < scene.choices.length; i++){
 			var x = i * 15;
 			if(player.choose == i){
@@ -167,7 +171,7 @@ player = {
 			} else {
 				fill(0);
 			}
-			text(scene.choices[i], 20, 430 + x);
+			text(scene.choices[i], 0, 20 + x);
 		}
 		if(keyW){
 			player.choose -= 1;
@@ -184,9 +188,10 @@ player = {
 				if(!j){
 					j = 0;
 				}
-				player.scene = texts.intro[j + 1];
+				player.scene = levels.intro[j + 1];
 			}
 			keyG = false;
 		}
+		pop();
 	}	
 }
